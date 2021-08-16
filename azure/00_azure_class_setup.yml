@@ -7,14 +7,8 @@
     subnet: Servers
     tag_owner: arrow
     tag_project: ansibletraining
-
-  vars_prompt:
-    - name: adminUser
-      prompt: "Type the name of your root/administrator account"
-      private: no
-    - name: adminPassword
-      prompt: "Type the password of your root/administrator account"
-      private: no
+    adminUser: jesbe
+    ssh_public_key: "{{lookup('file', '~/.ssh/id_rsa.pub') }}"
 
   tasks:
     - name: Azure Virtual Network
@@ -122,8 +116,11 @@
         name: "{{ item.name }}"
         os_type: "{{ item.os_type }}"
         admin_username: "{{ adminUser }}"
-        admin_password: "{{ adminPassword }}"
-        managed_disk_type: Standard_LRS
+        ssh_password_enabled: false
+        ssh_public_keys:
+          - path: "/home/{{ user }}/.ssh/authorized_keys"
+            key_data: "{{ ssh_public_key }}"
+          managed_disk_type: Standard_LRS
         state: present
         image:
           offer: "{{ item.offer }}"
