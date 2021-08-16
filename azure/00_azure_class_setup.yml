@@ -179,7 +179,7 @@
 
     - name: Create an azure container registry
       azure_rm_containerregistry:
-        name: "containerreg-{{ adminUser }}"
+        name: "containerreg{{ adminUser }}"
         location: "{{ location }}"
         resource_group: "ansible-{{ adminUser }}"
         admin_user_enabled: true

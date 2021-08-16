@@ -5,7 +5,7 @@ In azure run following in the azure-cli
 ```bash
 cd clouddrive
 
-git clone https://github.com/jesperberth/automationclass_setup/
+git clone https://github.com/jesperberth/scmclass_setup/
 
 cd automationclass_setup
 
