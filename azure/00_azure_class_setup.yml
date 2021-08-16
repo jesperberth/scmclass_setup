@@ -174,7 +174,7 @@
         publisher: Microsoft.Azure.Extensions
         virtual_machine_extension_type: CustomScript
         type_handler_version: "2.1"
-        settings: '{"commandToExecute": "apt install ansible", "skipDos2Unix": true}'
+        settings: '{"commandToExecute": "sudo apt-get install ansible -y", "skipDos2Unix": true}'
         auto_upgrade_minor_version: true
 
     - name: Create an azure container registry
