@@ -120,7 +120,7 @@
         ssh_public_keys:
           - path: "/home/{{ user }}/.ssh/authorized_keys"
             key_data: "{{ ssh_public_key }}"
-          managed_disk_type: Standard_LRS
+        managed_disk_type: Standard_LRS
         state: present
         image:
           offer: "{{ item.offer }}"
