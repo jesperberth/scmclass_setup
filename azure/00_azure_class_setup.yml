@@ -140,9 +140,9 @@
             "name": "ansible",
             "size": "Standard_A2_v2",
             "os_type": "Linux",
-            "offer": "RHEL",
-            "publisher": "RedHat",
-            "sku": "8",
+            "offer": "UbuntuServer",
+            "publisher": "Canonical",
+            "sku": "20.04-LTS",
             "version": "latest",
           }
       async: 1000
