@@ -96,6 +96,7 @@
           project: "{{ tag_project }}"
       loop:
         - ansible
+        - devops1
       async: 1000
       poll: 0
       register: create_nic
@@ -142,6 +143,15 @@
             "sku": "18.04-LTS",
             "version": "latest",
           }
+        - {
+            "name": "devops1",
+            "size": "Standard_DS2_v2",
+            "os_type": "Linux",
+            "offer": "0001-com-ubuntu-server-focal",
+            "publisher": "Canonical",
+            "sku": "20_04-lts",
+            "version": "latest",
+          }
       async: 1000
       poll: 0
       register: create_vm
@@ -154,14 +164,6 @@
       retries: 100
       delay: 5
       with_items: "{{ create_vm.results }}"
-
-    #    - name: Add Datadisk to ansible VM
-    #      azure_rm_manageddisk:
-    #        name: datadisk
-    #        location: "{{ location }}"
-    #        resource_group: "ansible-{{ adminUser }}"
-    #        disk_size_gb: 32
-    #        managed_by: ansible
 
     - name: Create Azure VM extension to enable ansible
       azure_rm_virtualmachineextension:
