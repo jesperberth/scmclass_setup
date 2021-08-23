@@ -3,7 +3,7 @@
   connection: local
   become: yes
   vars:
-    ansible_python_interpreter: "/usr/bin/python3"
+    ansible_python_interpreter: "/usr/bin/python"
     user: "{{ lookup('env', 'USER') }}"
 
   tasks:
