@@ -1,8 +1,8 @@
 ---
-- hosts: tag_type_devops
+ - hosts: tag_type_devops
   connection: local
   become: yes
-  become_method: su
+  become_user: jesbe
 
   vars:
     ansible_python_interpreter: "auto"
