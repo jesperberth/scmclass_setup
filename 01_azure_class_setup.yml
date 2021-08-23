@@ -4,3 +4,6 @@
   vars:
 
   tasks:
+  # wget https://vstsagentpackage.azureedge.net/agent/2.190.0/vsts-agent-linux-x64-2.190.0.tar.gz
+#  sudo apt  install docker.io
+#   sudo usermod -aG docker ${USER}
