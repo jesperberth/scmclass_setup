@@ -7,7 +7,7 @@
   tasks:
     - name: Install docker.io
       ansible.builtin.package:
-        name: docker.io
+        name: docker
         state: present
 
     - name: Allow User to run docker
