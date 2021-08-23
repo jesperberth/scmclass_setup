@@ -1,14 +1,13 @@
 ---
 - hosts: tag_type_devops
   connection: local
-  become: yes
   vars:
-    ansible_python_interpreter: "/usr/bin/python"
+    #ansible_python_interpreter: "/usr/bin/python"
     user: "{{ lookup('env', 'USER') }}"
 
   tasks:
     - name: Install docker.io
-      ansible.builtin.package:
+      ansible.builtin.apt:
         name: docker
         state: present
 
