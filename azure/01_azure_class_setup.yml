@@ -2,6 +2,7 @@
 - hosts: tag_type_devops
   connection: local
   become: yes
+  become_method: sudo
 
   vars:
     ansible_python_interpreter: "auto"
