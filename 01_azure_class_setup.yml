@@ -1,0 +1,6 @@
+---
+- hosts:
+  connection: local
+  vars:
+
+  tasks:
