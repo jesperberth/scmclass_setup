@@ -1,9 +1,32 @@
 ---
-- hosts:
+- hosts: tag_type_devops
   connection: local
   vars:
+      user: "{{ lookup('env', 'USER') }}"
 
   tasks:
-  # wget https://vstsagentpackage.azureedge.net/agent/2.190.0/vsts-agent-linux-x64-2.190.0.tar.gz
+    - name: Install docker.io
+      ansible.builtin.package:
+        name: docker.io
+        state: present
+
+    - name: Allow User to run docker
+      ansible.builtin.user:
+      name: "{{ user }}"
+      group: docker
+
+    - name: Create Folder DevOpsAgent
+      ansible.builtin.file:
+        path: ~/DevOpsAgent
+        state: directory
+
+    - name: Download vsts-agent
+      ansible.builtin.get_url:
+        url: https://vstsagentpackage.azureedge.net/agent/2.190.0/vsts-agent-linux-x64-2.190.0.tar.gz
+        dest: ~/DevOpsAgent/vsts-agent-linux-x64-2.190.0.tar.gz
+
+# wget https://vstsagentpackage.azureedge.net/agent/2.190.0/vsts-agent-linux-x64-2.190.0.tar.gz
 #  sudo apt  install docker.io
 #   sudo usermod -aG docker ${USER}
+# ./config.sh --unattended --url https://myaccount.visualstudio.com --auth pat --token myToken --pool default --agent myAgent --acceptTeeEula
+
