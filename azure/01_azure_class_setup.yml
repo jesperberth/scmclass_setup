@@ -1,6 +1,7 @@
 ---
 - hosts: tag_type_devops
   connection: local
+  become: yes
   vars:
     user: "{{ lookup('env', 'USER') }}"
 
