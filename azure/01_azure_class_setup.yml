@@ -1,6 +1,8 @@
 ---
 - hosts: tag_type_devops
   connection: local
+  become: yes
+
   vars:
     #ansible_python_interpreter: "/usr/bin/python"
     user: "{{ lookup('env', 'USER') }}"
