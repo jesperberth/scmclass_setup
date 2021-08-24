@@ -21,8 +21,7 @@
 
   vars:
     ansible_python_interpreter: "auto"
-
-  ansible_user: "{{ username }}"
+    ansible_user: "{{ username }}"
 
   tasks:
     - name: Install packages
@@ -54,7 +53,7 @@
 
     - name: Configure DevOpsAgent
       shell: |
-        ~/DevOpsAgent/config.sh --unattended --url https://{{ account }}.visualstudio.com --auth pat --token {{ token }} --pool {{ pool }}  --acceptTeeEula
+        ~/DevOpsAgent/config.sh --unattended --url https://dev.azure.com/{{ account }} --auth pat --token {{ token }} --pool {{ pool }}  --acceptTeeEula
 
 # ./config.sh --unattended --url https://myaccount.visualstudio.com --auth pat --token myToken --pool default  --acceptTeeEula
 
