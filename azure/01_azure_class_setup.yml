@@ -2,16 +2,34 @@
 - hosts: tag_type_devops
   connection: local
   become: yes
-  become_user: jesbe
+  vars_prompt:
+    - name: username
+      prompt: Username
+      private: no
+
+    - name: account
+      prompt: DevOps Account
+      private: no
+
+    - name: token
+      prompt: Access Token
+      private: no
+
+    - name: pool
+      prompt: Agent Pool
+      private: no
 
   vars:
     ansible_python_interpreter: "auto"
-    user: "{{ lookup('env', 'USER') }}"
+
+  ansible_user: "{{ username }}"
 
   tasks:
-    - name: Install docker.io
+    - name: Install packages
       ansible.builtin.apt:
-        name: docker.io
+        name:
+          - docker.io
+          - python3-pip
         state: present
 
     - name: Allow User to run docker
@@ -28,8 +46,17 @@
       ansible.builtin.get_url:
         url: https://vstsagentpackage.azureedge.net/agent/2.190.0/vsts-agent-linux-x64-2.190.0.tar.gz
         dest: ~/DevOpsAgent/vsts-agent-linux-x64-2.190.0.tar.gz
-# wget https://vstsagentpackage.azureedge.net/agent/2.190.0/vsts-agent-linux-x64-2.190.0.tar.gz
-#  sudo apt  install docker.io
-#   sudo usermod -aG docker ${USER}
+
+    - name: Extract DevOpsAgent
+      ansible.builtin.unarchive:
+        src: ~/DevOpsAgent/vsts-agent-linux-x64-2.190.0.tar.gz
+        dest: ~/DevOpsAgent
+
+    - name: Configure DevOpsAgent
+      shell: |
+        ~/DevOpsAgent/config.sh --unattended --url https://{{ account }}.visualstudio.com --auth pat --token {{ token }} --pool {{ pool }}  --acceptTeeEula
+
 # ./config.sh --unattended --url https://myaccount.visualstudio.com --auth pat --token myToken --pool default  --acceptTeeEula
 
+# sudo pip install ansible[azure]
+#
