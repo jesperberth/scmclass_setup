@@ -69,7 +69,7 @@
 
     - name: Check if agent service is installed
       stat:
-        path: /etc/systemd/system/vsts.agent.{{ account }}.our-linux-agent.service
+        path: /etc/systemd/system/vsts.agent.{{ account }}.{{ pool }}.devops1.service
       register: servicefile
       become: yes
       become_user: "{{ user }}"
