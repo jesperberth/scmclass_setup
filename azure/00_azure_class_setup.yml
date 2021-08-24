@@ -71,7 +71,6 @@
           owner: "{{ tag_owner }}"
           project: "{{ tag_project }}"
       loop:
-        - ansible
         - devops1
       async: 1000
       poll: 0
@@ -134,7 +133,7 @@
       delay: 5
       with_items: "{{ create_vm.results }}"
 
-    - name: Create Azure VM extension to enable ansible
+    - name: Create Azure VM extension
       azure_rm_virtualmachineextension:
         name: install-ansible
         resource_group: "{{ az_rg }}"
