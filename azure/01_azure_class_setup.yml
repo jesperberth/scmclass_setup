@@ -66,6 +66,18 @@
       become: yes
       become_user: "{{ user }}"
       when: not svcfile.stat.exists
+
+    - name: Check if agent service is installed
+      stat:
+        path: /etc/systemd/system/vsts.agent.{{ account }}.our-linux-agent.service
+      register: servicefile
+      become: yes
+      become_user: "{{ user }}"
+
+    - name: Configure DevOpsAgent as a Service
+      shell: |
+        /home/{{ user }}/DevOpsAgent/svc.sh install
+      when: not servicefile.stat.exists
 # ./config.sh --unattended --url https://myaccount.visualstudio.com --auth pat --token myToken --pool default  --acceptTeeEula
 
 # sudo pip install ansible[azure]
