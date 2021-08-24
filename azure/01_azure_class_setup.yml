@@ -36,20 +36,26 @@
       ansible.builtin.file:
         path: ~/DevOpsAgent
         state: directory
+      become: yes
+      become_user: "{{ user }}"
 
     - name: Download vsts-agent
       ansible.builtin.get_url:
         url: https://vstsagentpackage.azureedge.net/agent/2.190.0/vsts-agent-linux-x64-2.190.0.tar.gz
         dest: ~/DevOpsAgent/vsts-agent-linux-x64-2.190.0.tar.gz
+      become: yes
+      become_user: "{{ user }}"
 
     - name: Extract DevOpsAgent
       ansible.builtin.unarchive:
         src: ~/DevOpsAgent/vsts-agent-linux-x64-2.190.0.tar.gz
         dest: ~/DevOpsAgent
+      become: yes
+      become_user: "{{ user }}"
 
     - name: Configure DevOpsAgent
       shell: |
-        ~/DevOpsAgent/config.sh --unattended --url https://dev.azure.com/{{ account }} --auth pat --token {{ token }} --pool {{ pool }}  --acceptTeeEula
+        /home/{{ user }}/DevOpsAgent/config.sh --unattended --url https://dev.azure.com/{{ account }} --auth pat --token {{ token }} --pool {{ pool }}  --acceptTeeEula
 
 # ./config.sh --unattended --url https://myaccount.visualstudio.com --auth pat --token myToken --pool default  --acceptTeeEula
 
