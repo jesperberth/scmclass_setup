@@ -1,7 +1,7 @@
 ---
 - hosts: tag_type_devops
   connection: local
-
+  become: yes
   vars_prompt:
     - name: account
       prompt: DevOps Account
