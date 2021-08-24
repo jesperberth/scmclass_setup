@@ -1,5 +1,5 @@
 ---
-- hosts: tag_type_devops
+- hosts: localhost
   connection: local
   become: yes
   vars_prompt:
