@@ -114,9 +114,9 @@
             "name": "devops1",
             "size": "Standard_DS2_v2",
             "os_type": "Linux",
-            "offer": "UbuntuServer",
-            "publisher": "Canonical",
-            "sku": "18.04-LTS",
+            "offer": "RHEL",
+            "publisher": "RedHat",
+            "sku": "8",
             "version": "latest",
             "type": "devops",
           }
