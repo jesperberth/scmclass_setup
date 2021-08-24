@@ -56,7 +56,8 @@
     - name: Configure DevOpsAgent
       shell: |
         /home/{{ user }}/DevOpsAgent/config.sh --unattended --url https://dev.azure.com/{{ account }} --auth pat --token {{ token }} --pool {{ pool }}  --acceptTeeEula
-
+      become: yes
+      become_user: "{{ user }}"
 # ./config.sh --unattended --url https://myaccount.visualstudio.com --auth pat --token myToken --pool default  --acceptTeeEula
 
 # sudo pip install ansible[azure]
