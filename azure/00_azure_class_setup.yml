@@ -116,8 +116,8 @@
             "size": "Standard_DS2_v2",
             "os_type": "Linux",
             "offer": "UbuntuServer",
-            "publisher": "Canonical",
-            "sku": "18.04-LTS",
+            "publisher": "0001-com-ubuntu-server-focal",
+            "sku": "20_04-lts-gen2",
             "version": "latest",
             "type": "devops",
           }
@@ -126,8 +126,8 @@
             "size": "Standard_DS2_v2",
             "os_type": "Linux",
             "offer": "UbuntuServer",
-            "publisher": "Canonical",
-            "sku": "18.04-LTS",
+            "publisher": "0001-com-ubuntu-server-focal",
+            "sku": "20_04-lts-gen2",
             "version": "latest",
             "type": "devops",
           }
@@ -152,7 +152,7 @@
         publisher: Microsoft.Azure.Extensions
         virtual_machine_extension_type: CustomScript
         type_handler_version: "2.1"
-        settings: '{"commandToExecute": "sudo apt-get update && sudo apt-get install ansible -y", "skipDos2Unix": true}'
+        settings: '{"commandToExecute": "sudo apt-get update && sudo apt-get install python3-pip -y", "skipDos2Unix": true}'
         auto_upgrade_minor_version: true
 
     - name: Create an azure container registry
