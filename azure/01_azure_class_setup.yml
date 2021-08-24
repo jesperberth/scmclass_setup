@@ -76,7 +76,8 @@
 
     - name: Configure DevOpsAgent as a Service
       shell: |
-        /home/{{ user }}/DevOpsAgent/svc.sh install
+        cd /home/{{ user }}/DevOpsAgent
+        ./svc.sh install
       become: yes
       when: not servicefile.stat.exists
 # ./config.sh --unattended --url https://myaccount.visualstudio.com --auth pat --token myToken --pool default  --acceptTeeEula
