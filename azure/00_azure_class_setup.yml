@@ -2,13 +2,17 @@
 - hosts: localhost
   connection: local
 
+  vars_prompt:
+    - name: adminUser
+      prompt: Username
+      private: no
+
   vars:
     location: northeurope
     virtualnetwork: automationNetwork
     subnet: Servers
     tag_owner: arrow
     tag_project: ansibletraining
-    adminUser: jesbe
     ssh_public_key: "{{lookup('file', '~/.ssh/id_rsa.pub') }}"
     az_rg: "ansible-{{ adminUser }}"
 
