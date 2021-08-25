@@ -34,7 +34,7 @@
       become: yes
       become_user: "{{ user }}"
 
-    - name: Install pip requirements
+    - name: Install pip requirements azure
       ansible.builtin.pip:
         requirements: ~/requirements-azure.txt
       become: yes
