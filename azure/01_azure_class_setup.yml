@@ -27,6 +27,19 @@
           - python3-pip
         state: present
 
+    - name: Download azure requirements
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/ansible-collections/azure/dev/requirements-azure.txt
+        dest: ~/requirements-azure.txt
+      become: yes
+      become_user: "{{ user }}"
+
+    - name: Install pip requirements
+      ansible.builtin.pip:
+        requirements: ~/requirements-azure.txt
+      become: yes
+      become_user: "{{ user }}"
+
     - name: Allow User to run docker
       ansible.builtin.user:
         name: "{{ user }}"
