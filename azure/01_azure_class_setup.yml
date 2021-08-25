@@ -45,6 +45,13 @@
         name: "{{ user }}"
         group: docker
 
+    - name: Create Folder .azure
+      ansible.builtin.file:
+        path: ~/.azure
+        state: directory
+      become: yes
+      become_user: "{{ user }}"
+
     - name: Create Folder DevOpsAgent
       ansible.builtin.file:
         path: ~/DevOpsAgent
